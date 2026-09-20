@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: breast-cancer-detection-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: FRONTEND_ORIGINS
+        value: "*"
+      # Add Back4App credentials as Render environment variables when needed:
+      # BACK4APP_APP_ID
+      # BACK4APP_REST_API_KEY
+      # BACK4APP_SERVER_URL
+      # BACK4APP_CLASS
